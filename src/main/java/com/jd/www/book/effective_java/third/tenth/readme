@@ -1,0 +1,5 @@
+谨慎实现serializable接口
+考虑使用自定义的序列化形式
+保护性编写readObject 方法
+对于实例控制，枚举类型优先于readResolve
+考虑用序列化代理代替序列化实例

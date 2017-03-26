@@ -1,0 +1,64 @@
+*.war
+*.ear
+*.class
+.idea/**/*
+.idea/*
+/**/*.iml
+target/
+data/
+*.data
+/**/*.data
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+
+# eclipse ignore
+.metadata/
+.settings/
+.project
+.classpath
+.springBeans
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+logs/
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.swp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch

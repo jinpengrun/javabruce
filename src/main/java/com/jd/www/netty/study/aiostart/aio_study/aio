@@ -1,0 +1,6 @@
+CompletionHandler(V,A) 三个方法 V表示io的调用结果，A为发起调用时候 传入的attchment
+1 处理成功
+2 处理失败
+3 被取消（通过返回Future）情况下的回调处理
+
+

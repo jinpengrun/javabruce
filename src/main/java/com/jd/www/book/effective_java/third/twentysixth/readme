@@ -1,0 +1,4 @@
+优先考虑泛型
+试着编写泛型
+class DelayQueue<E extends Delayed> implements BlockingQueue<E>
+规定实际类型参数必须为java.util.concurrent.Delayed的一个子类型

@@ -1,0 +1,46 @@
+cep 复杂事件处理流程
+epl
+updatelistener 接口 监听epl 在引擎中运行情况， 事件进入并产生结果后会通知updatelistener
+
+EPL:select name from User
+//假设newEvents长度为一
+newEvents[0].get("name")能得到进入的User事件的name属性值
+
+EPL:select count(*) from User.win:time(5 sec)
+//假设newEvents长度为一
+newEvents[0].get("count(*))能得到5秒内进入引擎的User事件数量有多少
+
+
+
+filter  and  where-clause
+    epl 两种过滤事件方式，过滤事件 进入 view （一个窗口） filter 不占用 oldevent
+                       都进入 view 但不触发 updatelistener   占用 oldevent
+
+
+    // Apple事件进入Esper，只有amount大于200的才能进入win:length，并且length长度为5
+    EPL:select * from Apple(amount>200).win:length(5)  只有 amount 》  200 才进入 view  并且作为一个newEvent 触发 UpdateListener
+
+
+    // Apple事件进入Esper并进入win:length(5)，但是只有amount大于200的才能触发UpdateListener
+    EPL:select * from Apple.win:length(5) where amount>200  都进入view  这样就导致 有 oldevent
+
+
+
+
+   // 统计进入的5个Apple事件，amount的总数是多少
+   select sum(amount) from Apple.win:length_batch(5)
+
+   // 统计进入的5个Apple事件，amount的总数是多少，并按照price分组
+   select price, sum(amount) from Apple.win:length_batch(5) group by price
+
+   // 统计进入的5个Apple事件，amount的总数和name，并按照price分组
+   select price, name, sum(amount) from Apple.win:length_batch(5) group by price
+
+   //最后一个 和  倒数第二的区别  通知一次 或 通知两次
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+java1.8新特性
+1 接口的默认方法
+2 lambda表达式
+    lambda的对应，每个表达式都是对应一个类型，通常是接口类型。
+    函数式接口指的是仅仅包含一个抽象方法的接口，每个该类型的
+    lambda表达式都会被匹配到这个抽象方法。因为默认方法不算
+    抽象方法，所以你也可以给你的函数式接口添加默认方法
+     将lambda表达式当作任意只包含一个抽象方法的接口类型。
+     确保你的接口一定要达到这个要求，你只需要给你的接口添加
+     @FunctionalInterface注解，编译器如果发现你标注了这个注解
+     的接口有多余一个抽象时候会报错
+
+3 函数式接口
+    就是一个具有一个方法的普通接口
+    函数式接口可以被隐式转换为lambda表达式
+    函数式接口可以现有的函数友好地支持lambda
+    1.8之前已有的函数式接口
+    runnable，callable，privilegedaction，comparator，filefilter
+    pathMatcher，invocationHandler，propertychangelistener，actionlisterner
+    1.8新增
+    java.util.function 包 下很多类
+4 方法与构造函数的引用
+5 lambda 作用域
+    lambda表达式中访问外层作用域和老版本的匿名对象中的方式很相似，你可以直接访问标记了final的外层局部变量，或者实例的字段以及静态变量
+
+

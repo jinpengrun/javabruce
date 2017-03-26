@@ -1,0 +1,27 @@
+所有网络处理程序都有以下基本处理过程
+1 read request
+2 decode request
+3 process service
+4 encode reply
+5 send reply
+
+client -                -   handler（包含以上5个过程）
+         -            -
+client     - server -       handler（包含以上5个过程）
+         -            -
+client -                -   handler（包含以上5个过程）
+
+
+
+
+basic reactor design
+
+
+
+client
+
+client    Reactor-dispatch--acceptor
+                     |
+client               |
+                     |
+                    (以上5过程)

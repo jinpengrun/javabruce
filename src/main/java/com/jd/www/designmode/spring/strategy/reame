@@ -1,0 +1,2 @@
+这个与标准策略模式有稍许不同，抽象策略是aopproxy接口，cglib 和 jdkdynamic分别代表两种策略实现
+ProxyFactoryBean代表 context 角色根据条件选择jdk 代理 或者 是 cglib方式，

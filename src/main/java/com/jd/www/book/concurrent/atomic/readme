@@ -1,0 +1,28 @@
+java中的13个原子操作类
+4中类型的原子更新方式
+分别是原子更新基本型
+  atomicboolean  原子更新布尔类型
+  atomicInteger 原子更新整形
+  atomicLong 原子更新长整形
+原子更新数组
+  atomicIntegerArray 原子更新整形数组里的元素
+  atomicLongArray 原子更新长整形数组里的元素
+  atomicReferenceArray 原子更新引用类型数组里的元素
+
+原子更新引用
+  atomicReference
+  atomicReferenceFieldUpdater 原子更新引用类型里的字段
+  atomicMarkableReference 原子更新带有标记为的引用类型，可以原子更新一个布尔类型的标记为和引用类型
+原子更新属性（字段）
+  atomicIntegerFieldUpdater 原子更新整形的字段的更新器
+  atomicLongFieldUpdater
+  atomicStampedReference  原子更新带有版本好的引用类型，可解决aba 问题
+
+Atomic包里的类基本都是使用Unsafe实现的包装类
+
+Unsafe 类
+unsafe 提供3中cas 方法
+compareAndSwapObject
+compareAndSwapInt
+compareAndSwapLong
+

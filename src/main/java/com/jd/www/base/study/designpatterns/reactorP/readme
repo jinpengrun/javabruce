@@ -1,0 +1,7 @@
+reactor模式
+1 事件驱动 ，有一个多多个并发输入源头， 有一个service handler 多个request handlers ，service handler 会同步将输入的请求多路复用的分发给相应的request handler。
+
+
+类似 生成消费模式，一个或多个生产者将事件放入一个queue ， 一个或多个消费者主动从queue中poll 处理，reactor 并么有使用队列，当一个event到达 service handler ， service handler 主动根据
+不同event 将其分发到对应的request handler
+

@@ -1,0 +1,4 @@
+避免使用线程组
+不要依赖于线程调度组
+并发工具优先于wait 和 notify
+executor 和 task 优先于 线程

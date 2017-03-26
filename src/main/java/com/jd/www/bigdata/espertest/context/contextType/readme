@@ -1,0 +1,87 @@
+esper 的上下文
+context 是一个框， 把不同的事件按照框的规则框起来，有可能有多个框，框与框之间不会 相互影响
+context基本语法
+                 名字唯一                       多个属性 and 连接                             事件流 定义  例如 User
+create context context_name partition [by] event_property [and event_property [and ...]] from stream_def
+
+[, event_property [...] from stream_def] [, ...]
+
+
+
+
+example
+1 create context NewUser partition by id and name from User
+2 create context Person partition by sid from Student,tid from Teacher
+
+多个流 context 属性 数量一致，数据类型也要一致
+
+
+create context Person partition by sid from Student, tname from Teacher
+// 错误：sid是int，tname是String，数据类型不一致
+
+create context Person partition by sid from Student, tid,tname from Teacher
+// 错误：Student有一个属性，Teacher有两个属性，属性数量不一致
+
+create context Person partition by sid,sname from Student, tname,tid from Teacher
+// 错误：sid对应tname，sname对应tid，并且sname和tname是String，sid和tid是int，属性数量一样，但是对应的数据类型不一致
+
+
+
+ESB 是 以事件属性来定义的 ， esper 以hash 值为标准定义Context  属性参与 hash 计算
+
+HASH
+create context HashPerson coalesce by hash_code(sid) from Student(sid>5), consistent_hash_crc32(tid) from Teacher granularity 10
+
+CATEGORY CONTEXT
+create context CategoryByTemp
+group temp < 5 as cold, group temp between 5 and 85 as normal, group temp > 85 as large
+from Temperature
+
+
+ Non-Overlapping Context  由开始和结束构成context
+ create context context_name start start_condition end end_condition
+ create context NineToFive start (0, 9, *, *, *) end (0, 17, *, *, *)
+
+
+
+  String start = StartEvent.class.getName();
+         String end = EndEvent.class.getName();
+         String other = OtherEvent.class.getName();
+         // 以StartEvent事件作为开始条件，EndEvent事件作为结束条件
+         String epl1 = "create context NoOverLapping start " + start + " end " + end;
+         String epl2 = "context NoOverLapping select * from " + other;
+
+
+OVERLAPPING CONTEXT
+String initial = InitialEvent.class.getName();
+        String terminate = TerminateEvent.class.getName();
+        String some = SomeEvent.class.getName();
+        // 以InitialEvent事件作为初始事件，TerminateEvent事件作为终结事件
+        String epl1 = "create context OverLapping initiated " + initial + " terminated " + terminate;
+        String epl2 = "context OverLapping select context.id from " + initial;
+        String epl3 = "context OverLapping select * from " + some;
+        同non overlapping   可以触发多次
+
+
+Context Condition
+    主要包含 filter pattern crontab  time period
+
+    create context NewUser partition by id from User(id > 10)
+
+Context Nesting
+可以嵌套 ， 多个context 联合一起组成一个大的  context
+
+
+output when context partition ends
+当context 销毁 时候 想看东西 ， esper 提供 一种办法 来输出 内容。
+
+
+context 和  group by 的 区别
+
+
+
+
+
+
+
+

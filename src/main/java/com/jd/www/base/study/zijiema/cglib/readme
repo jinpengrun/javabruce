@@ -1,0 +1,25 @@
+代理模式上，基本上有Subject角色，RealSubject角色，Proxy角色。其中：Subject角色负责定义RealSubject和Proxy角色应该实现的接口；RealSubject角色用来真正完成业务服务功能；Proxy角色负责将自身的Request请求，调用realsubject 对应的request功能来实现业务功能，自己不真正做业务。
+1  静态的创建 一个 代理类 类似StationProxy 类
+2  利用javassist 来创建一个动态的的StationProxy 类
+3  invocationHandler 的 使用
+    invocationHandler的由来 可以将所有的触发真实角色动作交给一个触发的管理器，让这个管理器统一地管理触发。这种管理器就是Invocation Handler。
+
+   由来
+     a.一个比较直观的方式，就是定义一个功能接口，然后让Proxy 和RealSubject来实现这个接口。
+     b.还有比较隐晦的方式，就是通过继承。因为如果Proxy 继承自RealSubject，这样Proxy则拥有了RealSubject的功能，
+        Proxy还可以通过重写RealSubject中的方法，来实现多态。
+     jdk 创建动态代理机制 是使用a思路设计的
+     cglib 则是以 b思路设计的
+
+
+
+
+     基于jdk 的
+
+     比如现在想为RealSubject这个类创建一个动态代理对象，JDK主要会做以下工作：
+         1.   获取 RealSubject上的所有接口列表；
+         2.   确定要生成的代理类的类名，默认为：com.sun.proxy.$ProxyXXXX ；
+         3.   根据需要实现的接口信息，在代码中动态创建 该Proxy类的字节码；
+         4 .  将对应的字节码转换为对应的class 对象；
+         5.   创建InvocationHandler 实例handler，用来处理Proxy所有方法调用；
+         6.   Proxy 的class对象 以创建的handler对象为参数，实例化一个proxy对象

@@ -1,0 +1,4 @@
+支持的数据结构
+    pojo    每个私有属性要有getter 方法，   支持复杂数据类型以及嵌套
+    ，java.util.map, object array , xml
+

@@ -1,0 +1,5 @@
+覆盖equals时请遵守约定
+覆盖equals时总要覆盖hashcode
+覆盖总要toString
+谨慎覆盖clone
+考虑实现comparable接口

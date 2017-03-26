@@ -1,0 +1,4 @@
+对流类重要的三个接口
+AutoCloseable 在JDK7中只要实现了AutoCloseable或Closeable接口的类或接口，都可以使用try-with-resource来实现异常处理和资源关闭
+Closeable     closeable 继承 autocloseable 接口
+flush 接口写入流所有io 类 都实现了 flushable 接口

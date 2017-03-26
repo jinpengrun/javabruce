@@ -1,0 +1,27 @@
+java 的 nio  linux 上 基于 io复用模型  epoll
+java 1.5 nio
+java 1.7 nio2.0
+    批量获取文件属性api
+    提供aio 功能，支持基于文件的异步i/o 操作和 对网络套接字的异步操作
+    完成通道功能，包括对配置和多播数据报支持
+理解短连接 和  长连接
+传统的bio  和  伪异步io编程
+  一个 accept 线程  多个处理的 线程池 ， 线程池满 线程阻塞 无法 接受新的 请求 ，就会超时
+  发送一个 请求后 立即断掉 短连接， 发送多次 请求  连接一直持有，长连接
+
+nio 概念  和 linux网络模型对应
+1 缓冲区buffer
+2 通道channel 双向 更好映衬底层操作系统api
+3 多路复用器 selector channel
+
+nio服务序列
+serverSocketChannel -- InetSocketAddress -- 创建selector 启动线程 -- 将serversocketChannel 注册到selector
+--handleAccept处理新的客户端接入--设置新建客户端连接的socket参数 -- 向selector注册监听读操作selectkey.op_read
+--handleRead 异步读请求消息到bytebuffer-- decode请求消息-- 异步写bytebuffer到socketchannel
+
+
+java nio 中重要的通道实现
+    FileChannel：从文件中读写数据。
+    DatagramChannel：能通过UDP读写网络中的数据。
+    SocketChannel：能通过TCP读写网络中的数据。
+    ServerSocketChannel：可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel
