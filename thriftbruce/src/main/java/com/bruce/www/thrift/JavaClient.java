@@ -43,6 +43,7 @@ public class JavaClient {
             TProtocol protocol = new TBinaryProtocol(transport);
             Calculator.Client client = new Calculator.Client(protocol);
 
+
             perform(client);
 
             transport.close();
