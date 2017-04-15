@@ -76,7 +76,7 @@
         </dependency>
 
 
-        <!--msgpack-->
+        <!--msgpack-ddd->
         <dependency>
             <groupId>org.msgpack</groupId>
             <artifactId>msgpack</artifactId>
@@ -84,7 +84,7 @@
         </dependency>
 
 
-        <!--esper test-->
+        <!-esper test-->
         <dependency>
             <groupId>com.espertech</groupId>
             <artifactId>esper</artifactId>
