@@ -9,6 +9,7 @@ package com.jd.www.base.study.new1dot8;
  * </ul>
  */
 public class DefaultInterfact {
+    //1.8中接口可以有默认实现 default
     public interface Formula{
         double calculate(int a);
 
@@ -24,6 +25,11 @@ public class DefaultInterfact {
             @Override
             public double calculate(int a) {
                 return sqrt(a * 100);
+            }
+
+            @Override
+            public double sqrt(int a) {
+                return 0.2;
             }
         };
         System.out.println(formula.calculate(100));
